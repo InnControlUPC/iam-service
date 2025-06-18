@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mysql-iam:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Admin123admin
+      MYSQL_DATABASE: InventService
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  iam-app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql-iam:
+        condition: service_healthy
