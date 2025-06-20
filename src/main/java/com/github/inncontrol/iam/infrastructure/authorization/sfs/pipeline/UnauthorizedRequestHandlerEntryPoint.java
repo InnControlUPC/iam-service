@@ -15,9 +15,9 @@ import java.io.IOException;
 public class UnauthorizedRequestHandlerEntryPoint implements AuthenticationEntryPoint {
     private static final Logger LOGGER =  LoggerFactory.getLogger(UnauthorizedRequestHandlerEntryPoint.class);
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authenticationException) throws IOException, ServletException {
-        LOGGER.error("Unauthorized request: {}", authenticationException.getMessage());
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authenticationException)  {
+       /* LOGGER.error("Unauthorized request: {}", authenticationException.getMessage());
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized request detected");
-
+*/
     }
 }

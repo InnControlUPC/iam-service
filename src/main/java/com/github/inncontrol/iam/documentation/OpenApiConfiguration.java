@@ -27,7 +27,7 @@ public class OpenApiConfiguration {
                         .url("https://inncontrol-platform.wiki.github.io/docs"));
 
         // Add security scheme
-        final String securitySchemeName = "bearerAuth";
+       final String securitySchemeName = "bearerAuth";
         openApi.addSecurityItem(new SecurityRequirement()
                         .addList(securitySchemeName))
                 .components(new Components()

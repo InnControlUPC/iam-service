@@ -21,6 +21,8 @@ public class BearerAuthorizationRequestFilter extends OncePerRequestFilter {
     private static final Logger LOGGER = LoggerFactory.getLogger(BearerAuthorizationRequestFilter.class);
     private final BearerTokenService tokenService;
 
+
+
     @Qualifier("defaultUserDetailsService")
     private final UserDetailsService  userDetailsService;
 
@@ -34,19 +36,6 @@ public class BearerAuthorizationRequestFilter extends OncePerRequestFilter {
             @NonNull HttpServletRequest request,
             @NonNull HttpServletResponse response,
             @NonNull FilterChain filterChain) throws ServletException, IOException {
-
-        String path = request.getRequestURI();
-        if (path.startsWith("/v3/api-docs") ||
-                path.startsWith("/swagger-ui") ||
-                path.startsWith("/swagger-ui/index.html") ||
-                path.startsWith("/swagger-resources") ||
-                path.startsWith("/webjars") ||
-                path.startsWith("/api/v1/authentication") ||
-                path.startsWith("/api/v1/roles")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
         try {
             String token = tokenService.getBearerTokenFrom(request);
             LOGGER.info("Token: {}", token);
